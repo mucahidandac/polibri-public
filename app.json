@@ -1,0 +1,26 @@
+{
+  "description": "E-commerce web application using Express 4",
+  "repository": "https://github.com/AndacMucahid/polibri-public/",
+  "logo": "https://cdn.rawgit.com/heroku/node-js-getting-started/master/public/node.svg",
+  "keywords": ["node", "express", "heroku"],
+  "image": "heroku/nodejs",
+  "addons": [
+    "heroku-postgresql"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "name": "Polibri",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}

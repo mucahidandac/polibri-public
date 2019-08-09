@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Polibri</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap4/bootstrap.min.css">
+<link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/assets/css/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap4/bootstrap-datepicker.css">
+
+</head>
+<body style="background-image:url(../assets/img/library.jpeg); background-attachment:fixed;">
+ 
+<div class="super_container" style="background-color:rgba(0,0,0,0.5)">
+	<div class="home">
+			<header class="display-container content header">	
+					<div id="header" class="fixed-top header-dark"> <!-- transparent -->
+						<div class="container header-container">
+	
+							<!-- Begin logo  -->
+							<div class="logo font-alter-1">
+							<a href="/"><h1><img class="item-img" src="/assets/img/polibrilogo.png" alt="image">polibri</h1></a>						
+							</div>
+							<input class="menu-btn" type="checkbox" id="menu-btn" />
+							<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+							<!-- End logo -->		
+							<ul class="menu">
+								<li class="dropdown"><a href="/pages/books.html" class="dropbtn">Books</a>
+									<div class="dropdown-content">
+									<div class="rowb">
+										<div class="columnb" >
+										<a class="not-active">Genres</a>
+											<ul class="sub-menu" id="genre-sub-menu"> </ul>
+										</div>
+										<div class="columnb">
+											<a class="not-active">Themes</a>
+											<ul class="sub-menu" id="theme-sub-menu"> </ul>
+										</div>
+										<div class="columnb">
+											<a class="not-active">For You</a>
+											<a href="/pages/books.html?selected=bestseller">Best sellers</a>
+											<a href="/pages/books.html?selected=recommendations">Our favorite readings</a>
+										</div>
+									</div>
+								</li>
+								<li><a href="/pages/authors.html">Authors</a></li>
+								<li><a href="/pages/events.html">Events</a></li>
+								<li><a href="/pages/shipping_info.html">Ordering and shipping info</a></li>
+								<li><a href="/pages/contact.html">Contact us</a></li>
+								<li><a href="/pages/faq.html">FAQ</a></li>
+								<li class="loginmenu"><a href="/pages/login.html" id="login"><i class="fa fa-user"></i></a></li>
+								<li class="dropdown loginmenu" id="user_menu"><a class="dropbtn" id="user_name"></a>
+									<div class="dropdown-content ">
+									<div class="rowb">
+										<ul class="sub-menu subuser" >
+											<li><a href="/pages/orders.html?selected=cart" id="cart"><i class="fa fa-shopping-cart" style="color:black; margin-right: 10px;"></i>Shopping Cart</a></li>
+											<li><a href="/pages/orders.html?selected=reservations" id="reservations"><i class="fa fa-heart" style="color:black; margin-right: 10px;" ></i>Reservations</a></li>
+											<li><a onclick="onLogout()" id="logout"><span title="Logout"></span><i class="fa fa-power-off" style="color:black; margin-right: 10px;"></i>Log out</a></li>    
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+			</header>
+			<!-- End header -->		
+	</div>
+	
+	<div class="intro">
+			<p style="color:white;text-transform:uppercase;">FAQ</p>
+	<div class="rowe">
+
+            <h2>FAQ</h2>
+            <p style="display:inline-block">Here you can find all the Frequently Asked Questions. If you can't find what you are looking for, do not hesitate to </p> <a href="/pages/contact.html">Contact us!</a>
+            
+            <button class="accordion" style="margin-top:20px;">How can I register to the website?</button>
+            <div class="panel">
+              <p>You can register by clicking on the user icon at the top-right of the page, and then selecting "Register". You will be asked to insert your name, e-mail and password.</p>
+            </div>
+            
+            <button class="accordion">Is the registration free?</button>
+            <div class="panel">
+              <p>Yes, it is. </p>
+            </div>
+            
+            <button class="accordion">Will my personal data be communicated to others?</button>
+            <div class="panel">
+              <p>No, you personal data will only be used by Polibri and its partners for the management of the orders.</p>
+            </div>
+
+            <button class="accordion">Why should I register?</button>
+            <div class="panel">
+              <p>The registration is mainly required to purchase books, check your order status and leave a review for a book.</p>
+            </div>
+            </div>
+            </div>
+		
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+		<div class="footer_extra">
+			<div class="container">
+						<div class="footer_extra_content d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-center justify-content-center">
+							<div class="footer_social">
+								<ul id='ciaone' class="footer_social_list">
+									<li><a href="https://twitter.com/polibri"><i id="i1" class="fa fa-twitter footersocial" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/polibri/"><i id="i2" class="fa fa-instagram footersocial" aria-hidden="true"></i></a></li>
+									<li><a href="https://it.facebook.com/company/polibrinew"><i id="i3" class="fa fa-facebook footersocial" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+							<div class="footer_extra_right ml-lg-auto text-lg-right">
+							</div>
+						</div>
+			</div>
+		</div>
+	</footer>
+
+<script src="/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/assets/css/bootstrap4/popper.js"></script>
+<script src="/assets/css/bootstrap4/bootstrap.min.js"></script>
+<script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/assets/js/header.js"></script>
+
+<script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+        
+        for (i = 0; i < acc.length; i++) {
+          acc[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight){
+              panel.style.maxHeight = null;
+            } else {
+              panel.style.maxHeight = panel.scrollHeight + "px";
+            } 
+          });
+        }
+        </script>
+</body>
+</html>

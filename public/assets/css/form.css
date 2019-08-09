@@ -1,0 +1,38 @@
+
+#form_container
+{
+	margin:100px 20px 100px 20px;
+  color:#000;
+}
+
+.upload-btn-wrapper 
+{
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] 
+{
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
+
+.contact-body {
+	background-color: #000;
+	background-image: url("../img/library.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+	background-repeat:no-repeat;
+}
+.contact-text {
+  color:black;
+}
+
+.contact-input {
+  background-color: white;
+}

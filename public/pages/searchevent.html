@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Polibri</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap4/bootstrap.min.css">
+<link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="/assets/css/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap4/bootstrap-datepicker.css">
+</head>
+<body>
+
+<!-- Loader -->
+<div id="preloader">
+	<div class="pulse"></div>
+</div>
+
+<!-- ********** 
+Share event with your friends - window (modal) 
+********** -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h4 style="text-align:center;">Share with your friends</h4>
+	<br>
+	<i><h3 id="eventtitle" class="center"></h3></i>
+	<br>
+	<!-- Text field with the link to share events -->
+	<div class="center">
+	<input type="text" id="myInput" style="width:250px;height:43px;" readonly>
+	<!-- Button used to copy the text -->
+	<button id="copylink" class="btn" onclick="copyToClipboard()"><i class="fa fa-files-o"></i></button>
+	</div>
+	<br>
+	<p class="center">- or -</p>
+	<br>
+	<!-- List of the socials where to share events -->
+	<ul class="footer_social_list center" style="background:transparent;margin-left:30%;">
+		<li><a id="sharefb" href="#"><i id="s1" class="fa fa-facebook fa-2x" style="text-align:center;" aria-hidden="true"></i></a></li>
+		<li><a id="sharetw" href="#"><i id="s2" class="fa fa-twitter fa-2x" style="text-align:center;" aria-hidden="true"></i></a></li>
+		<li><a id="sharewa" href="#"><i id="s3" class="fa fa-whatsapp fa-2x" style="text-align:center;" aria-hidden="true"></i></a></li>
+		<li><a id="sharemail" href="#"><i id="s4" class="fa fa-envelope fa-2x" style="text-align:center;" aria-hidden="true"></i></a></li>
+	</ul>
+  </div>
+
+</div>
+ 
+ 
+<!-- ********* 
+ event flyer 
+ ********** -->
+<div class="super_container">
+	<div class="home">
+			<header class="display-container content header">	
+					<div id="header" class="fixed-top header-dark"> <!-- transparent -->
+						<div class="container header-container">
+	
+							<!-- Begin logo  -->
+							<div class="logo font-alter-1">
+							<a href="/"><h1><img class="item-img" src="/assets/img/polibrilogo.png" alt="image">polibri</h1></a>						
+							</div>
+							<input class="menu-btn" type="checkbox" id="menu-btn" />
+							<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+							<!-- End logo -->		
+							<ul class="menu">
+								<li class="dropdown"><a href="/pages/books.html" class="dropbtn">Books</a>
+									<div class="dropdown-content">
+									<div class="rowb">
+										<div class="columnb" >
+										<a class="not-active">Genres</a>
+											<ul class="sub-menu" id="genre-sub-menu"> </ul>
+										</div>
+										<div class="columnb">
+											<a class="not-active">Themes</a>
+											<ul class="sub-menu" id="theme-sub-menu"> </ul>
+										</div>
+										<div class="columnb">
+											<a class="not-active">For You</a>
+											<a href="/pages/books.html?selected=bestseller">Best sellers</a>
+											<a href="/pages/books.html?selected=recommendations">Our favorite readings</a>
+										</div>
+									</div>
+								</li>
+								<li><a href="/pages/authors.html">Authors</a></li>
+								<li><a href="/pages/events.html">Events</a></li>
+								<li><a href="/pages/shipping_info.html">Ordering and shipping info</a></li>
+								<li><a href="/pages/contact.html">Contact us</a></li>
+								<li><a href="/pages/faq.html">FAQ</a></li>
+								<li class="loginmenu"><a href="/pages/login.html" id="login"><i class="fa fa-user"></i></a></li>
+								<li class="dropdown loginmenu" id="user_menu"><a class="dropbtn" id="user_name"></a>
+									<div class="dropdown-content ">
+									<div class="rowb">
+										<ul class="sub-menu subuser" >
+											<li><a href="/pages/orders.html?selected=cart" id="cart"><i class="fa fa-shopping-cart" style="color:black; margin-right: 10px;"></i>Shopping Cart</a></li>
+											<li><a href="/pages/orders.html?selected=reservations" id="reservations"><i class="fa fa-heart" style="color:black; margin-right: 10px;" ></i>Reservations</a></li>
+											<li><a onclick="onLogout()" id="logout"><span title="Logout"></span><i class="fa fa-power-off" style="color:black; margin-right: 10px;"></i>Log out</a></li>    
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+			</header>
+
+<!-- ********** 
+Intro - search bar
+********** -->
+	<div class="intro" style="background:white;">
+	<div class="s003">
+      <form id="searchform">
+        <div class="inner-form"  style="box-shadow: 0 0 10px rgb(191,191,191)">
+          <div class="input-field second-wrap">
+            <input id="filtersearch" type="text" color="#FFFFFF" placeholder="Enter a keyword" />
+          </div>
+		  <div class="input-field first-wrap">
+			<input id="filterday" name="date" placeholder="DD/MM/YYYY" type="text" autocomplete="off"/>
+          </div>
+          <div class="input-field third-wrap">
+            <button id="filterbutton" class="btn-search" type="button">
+              <svg class="svg-inline--fa fa-search fa-w-16" aria-hidden="true" data-prefix="fas" data-icon="search" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                <path fill="currentColor" d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+		<p id="popup" style="color:red;display:none;">Insert valid values for search. If you are looking for a keyword, type more than one character</p>
+      </form>
+    </div>
+	<br>
+
+	<!-- Results text -->
+	<h2 id="textresults">No result found</h2>
+	<br>
+
+	<div id="events" class="intro_content d-flex flex-row flex-wrap align-items-start">
+	</div>
+	
+	</div>
+
+<!-- ********** 
+Footer with polibri socials
+********** -->
+	<footer class="footer">
+		<div class="footer_extra">
+			<div class="container">
+						<div class="footer_extra_content d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-center justify-content-center">
+							<div class="footer_social">
+								<ul id='ciaone' class="footer_social_list">
+									<li><a href="https://twitter.com/polibri"><i id="i1" class="fa fa-twitter footersocial" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.instagram.com/polibri/"><i id="i2" class="fa fa-instagram footersocial" aria-hidden="true"></i></a></li>
+									<li><a href="https://it.facebook.com/company/polibrinew"><i id="i3" class="fa fa-facebook footersocial" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+							<div class="footer_extra_right ml-lg-auto text-lg-right">
+							</div>
+						</div>
+			</div>
+		</div>
+	</footer>
+
+<script src="/assets/js/jquery-3.2.1.min.js"></script>
+<script src="/assets/css/bootstrap4/popper.js"></script>
+<script src="/assets/css/bootstrap4/bootstrap.min.js"></script>
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/searchevents.js"></script>
+<script type="text/javascript" src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
+<script> 
+//copy link of the event to clipboard
+
+function copyToClipboard() {
+  /* Get the text field */
+  var copyText = document.getElementById("myInput");
+
+  /* Select the text field */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+}
+</script>
+<script>
+//date picker script 
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'dd/mm/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+	
+	function myFunction() {
+  var x = document.getElementById("myTopnav");
+  if (x.className === "topnav") {
+    x.className += " responsive";
+  } else {
+    x.className = "topnav";
+  }
+}
+</script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<script type="text/javascript" src="/assets/js/header.js"></script>
+
+</body>
+</html>

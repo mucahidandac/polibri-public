@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Polibri</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/assets/css/main_styles.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/responsive.css">
+<link rel="stylesheet" type="text/css" href="/assets/css/bootstrap4/bootstrap-datepicker.css">
+<link href="/assets/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <!-- ********** 
+Header with polibri logo 
+********** -->
+<header class="display-container content header">	
+		<div id="header" class="fixed-top header-dark"> <!-- transparent -->
+			<div class="container header-container">
+
+				<!-- Begin logo  -->
+				<div class="logo font-alter-1">
+				<a href="/"><h1><img class="item-img" src="/assets/img/polibrilogo.png" alt="image">polibri</h1></a>						
+				</div>
+				<input class="menu-btn" type="checkbox" id="menu-btn" />
+				<label class="menu-icon" for="menu-btn"><span class="navicon"></span></label>
+				<!-- End logo -->		
+				<ul class="menu">
+					<li class="dropdown"><a href="/pages/books.html" class="dropbtn">Books</a>
+						<div class="dropdown-content">
+						<div class="rowb">
+							<div class="columnb" >
+							<a class="not-active">Genres</a>
+								<ul class="sub-menu" id="genre-sub-menu"> </ul>
+							</div>
+							<div class="columnb">
+								<a class="not-active">Themes</a>
+								<ul class="sub-menu" id="theme-sub-menu"> </ul>
+							</div>
+							<div class="columnb">
+								<a class="not-active">For You</a>
+								<a href="/pages/books.html?selected=bestseller">Best sellers</a>
+								<a href="/pages/books.html?selected=recommendations">Our favorite readings</a>
+							</div>
+						</div>
+					</li>
+					<li><a href="/pages/authors.html">Authors</a></li>
+					<li><a href="/pages/events.html">Events</a></li>
+					<li><a href="/pages/shipping_info.html">Ordering and shipping info</a></li>
+					<li><a href="/pages/contact.html">Contact us</a></li>
+					<li><a href="/pages/faq.html">FAQ</a></li>
+					<li class="loginmenu"><a href="/pages/login.html" id="login"><i class="fa fa-user"></i></a></li>
+					<li class="dropdown loginmenu" id="user_menu"><a class="dropbtn" id="user_name"></a>
+						<div class="dropdown-content ">
+						<div class="rowb">
+							<ul class="sub-menu subuser" >
+								<li><a href="/pages/orders.html?selected=cart" id="cart"><i class="fa fa-shopping-cart" style="color:black; margin-right: 10px;"></i>Shopping Cart</a></li>
+								<li><a href="/pages/orders.html?selected=reservations" id="reservations"><i class="fa fa-heart" style="color:black; margin-right: 10px;" ></i>Reservations</a></li>
+								<li><a onclick="onLogout()" id="logout"><span title="Logout"></span><i class="fa fa-power-off" style="color:black; margin-right: 10px;"></i>Log out</a></li>    
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+</header>
+			<!-- End header -->		
+	</div>
+	<div class="intro">
+    <div class="row">
+        <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" class="form-control" name="user_email" placeholder="Email" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" class="form-control" name="user_password" placeholder="Password" required>
+        </div>
+    
+    </div>
+
+    <div class="text-center top-space">
+        <button type="submit" id="btn-login" class="btn btn-success btn-lg">Login</button>
+    </div>
+
+	<a href="/pages/register.html" style="margin-left:10px;">Or Register</a>
+</div>
+   
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/assets/js/login.js"></script>
+<script type="text/javascript" src="/assets/js/header.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+{
+  "name": "Polibri",
+  "version": "0.5.0",
+  "description": "Polibri web application",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "migrate:latest": "knex migrate:latest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AndacMucahid/polibri-public"
+  },
+  "keywords": [
+    "node",
+    "heroku"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bookshelf": "^0.15.1",
+    "connect-loki": "^1.1.0",
+    "core-util-is": "^1.0.2",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "knex": "^0.17.6",
+    "markdown-js": "0.0.4",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.1",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "pg": "^7.11.0",
+    "registry": "^0.3.0",
+    "swagger-ui-express": "^4.0.6",
+    "yamljs": "^0.3.0"
+  }
+}

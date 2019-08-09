@@ -1,0 +1,863 @@
+openapi: 3.0.0
+servers:
+  - description: App Production Server 
+    url: https://polibri.herokuapp.com/api
+  - description: App Development Environment
+    url: http://localhost:5000/api
+info:
+  description: This is a simple bookstore server with a book inventory, users and a shop. In order to use session required apis, you need to use /api/users/login api one time, then include the cookie parameter returned in payload into Authorization section.
+  version: "1.0.0"
+  title: Polibri
+  contact:
+    email: mucahid.andac@mail.polimi.it
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Event
+  - name: Author
+  - name: Book
+  - name: Order
+  - name: User
+paths:
+  /authors:
+    get:
+      tags:
+        - Author
+      summary: searches all authors
+      operationId: searchAuthors
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '404':
+          description: nothing found
+  /authors/{id}:
+    get:
+      tags:
+        - Author
+      summary: searches author by given id
+      operationId: searchAuthorById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            example: 1
+          required: true
+          description: Numeric ID of the Author to get
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Author'
+        '404':
+          description: nothing found
+  /books:
+    get:
+      tags:
+        - Book
+      summary: searches all books
+      operationId: searchBooks
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/{id}:
+    get:
+      tags:
+        - Book
+      summary: searches book by given id
+      operationId: searchBookById
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+            example: 1
+          required: true
+          description: Numeric ID of the Book to get
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/recommendations:
+    get:
+      tags:
+        - Book
+      summary: fetches the recommended books by system
+      operationId: searchBookRecommendations
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/bestsellers:
+    get:
+      tags:
+        - Book
+      summary: fetches the bestseller books for current month
+      operationId: searchBookBestsellers
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/search:
+    get:
+      tags:
+        - Book
+      summary: searches books by custom genre and theme filters
+      operationId: searchBookCustom
+      description: |
+        By passing in the appropriate options, you can search for
+        available books in the system
+      parameters:
+        - in: query
+          name: theme_ids
+          schema:
+            type: string
+            example: '1,2'
+          required: false
+          description: The string of theme ids seperated by comma without white space to be included into query as constraint
+        - in: query
+          name: genre_ids
+          schema:
+            type: string
+            example: '1,2'
+          required: false
+          description: The string of genre ids seperated by comma without white space to be included into query as constraint
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/genres:
+    get:
+      tags:
+        - Book
+      summary: fetches all genres in database
+      operationId: searchBookGenres
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Genre'
+        '404':
+          description: nothing found
+  /books/genres/{id}:
+    get:
+      tags:
+        - Book
+      summary: searches all books with given genre id
+      operationId: searchBooksByGenresId
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer  
+            example: 2
+          description: genre id of books to be searched
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /books/themes:
+    get:
+      tags:
+        - Book
+      summary: fetches all themes in database
+      operationId: searchBookThemes
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Theme'
+        '404':
+          description: nothing found
+  /books/themes/{id}:
+    get:
+      tags:
+        - Book
+      summary: searches all books with given theme id
+      operationId: searchBooksByThemesId
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer  
+            example: 1
+          description: theme id of books to be searched
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+        '404':
+          description: nothing found
+  /events:
+    get:
+      tags:
+        - Event
+      summary: searches all events
+      operationId: searchEvents
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '404':
+          description: nothing found
+  /events/{id}:
+    get:
+      tags:
+        - Event
+      summary: searches an event by event id
+      operationId: searchEventById
+      parameters:
+      - in: path
+        required: true
+        name: id
+        schema:
+          type: integer  
+          example: 1
+        description: event id to be searched
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        '404':
+          description: nothing found
+  /events/monthly:
+    get:
+      tags:
+        - Event
+      summary: searches events of existing month
+      operationId: searchEventsMontly
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Event'
+        '404':
+          description: nothing found
+  /orders:
+    get:
+      tags:
+        - Order
+      summary: searches all orders of logged in user including drafts, reserved and completed
+      operationId: searchOrders
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized. Need to login first
+        '404':
+          description: nothing found
+      security:
+        - cookieAuth: []
+  /orders/{id}:
+    get:
+      tags:
+        - Order
+      summary: searches an orders of logged in user by order id
+      operationId: searchOrderById
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer  
+          example: 1
+        description: order id to be searched
+        required: true
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+        '404':
+          description: nothing found
+        '401':
+          description: Unauthorized. Need to login first
+      security:
+        - cookieAuth: []
+    delete:
+      tags:
+        - Order
+      summary: deletes an order of logged in user by order id
+      operationId: deleteOrderById
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer  
+          example: 1
+        description: order id to be deleted
+        required: true
+      responses:
+        '200':
+          description: deleted successfully
+        '404':
+          description: order not found
+        '401':
+          description: Unauthorized. Need to login first
+        '500':
+          description: something went wrong
+      security:
+        - cookieAuth: []
+  /orders/cart:
+    get:
+      tags:
+        - Order
+      summary: fetches the orders in shopping cart of logged in user
+      operationId: fetchUserCart
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+             schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized. Need to login first
+        '404':
+          description: nothing found
+      security:
+        - cookieAuth: []
+    put:
+      tags:
+        - Order
+      summary: inserts an order with status draft with logged in user's id
+      operationId: insertUserCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                book_id:
+                  type: integer
+                  description: id of book to be recorded into shopping cart
+                  example: 1
+                quantity:
+                  type: integer
+                  example: 1
+      responses:
+        '200':
+          description: inserted Order object
+          content:
+            application/json:
+             schema:
+                type: object
+                properties:
+                  book_id:
+                    type: integer
+                    description: stored book id                    
+                    example: 1
+                  quantity:
+                    type: integer
+                    description: \# of orders stored
+                    example: 2
+                  status:
+                    type: string
+                    description: status of order                    
+                    example: 'draft'
+                  id:
+                    type: integer
+                    description: inserted order id
+                    example: 2     
+        '400':
+          description: Missing parameter probably
+        '401':
+          description: Unauthorized. Need to login first
+        '500':
+          description: something went wrong
+      security:
+        - cookieAuth: []
+  /orders/reservations:
+    get:
+      tags:
+        - Order
+      summary: fetches the orders in reserve status of logged in user
+      operationId: fetchUserReservations
+      responses:
+        '200':
+          description: search results matching criteria
+          content:
+            application/json:
+             schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized. Need to login first
+        '404':
+          description: nothing found
+      security:
+        - cookieAuth: []
+    put:
+      tags:
+        - Order
+      summary: inserts an order with status reserve with logged in user's id
+      operationId: insertUserReservations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                book_id:
+                  type: integer
+                  description: id of book to be recorded into reservations
+                  example: 1
+                quantity:
+                  type: integer
+                  example: 1
+      responses:
+        '200':
+          description: inserted Order object
+          content:
+            application/json:
+             schema:
+                type: object
+                properties:
+                  book_id:
+                    type: integer
+                    description: stored book id                    
+                    example: 1
+                  quantity:
+                    type: integer
+                    description: \# of orders stored
+                    example: 2
+                  status:
+                    type: string
+                    description: status of order                    
+                    example: 'reserve'
+                  id:
+                    type: integer
+                    description: inserted order id
+                    example: 2
+        '400':
+          description: Missing parameter probably
+        '401':
+          description: Unauthorized. Need to login first
+        '500':
+          description: Something went wrong
+      security:
+        - cookieAuth: []
+  /orders/quantity:
+    patch:
+      tags:
+        - Order
+      summary: updates the quantity field of given order info
+      operationId: updateUserOrder
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                order_id:
+                  type: integer
+                  example: 1
+                quantity:
+                  type: integer
+                  example: 2
+      responses:
+        '200':
+          description: Update Successfully
+          content:
+            application/json:
+             schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Order'
+        '401':
+          description: Unauthorized. Need to login first
+        '404':
+          description: nothing found
+      security:
+        - cookieAuth: []
+  /users/{id}:
+    get:
+      tags:
+        - User
+      summary: searches an user with given id
+      operationId: searchUserById
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer  
+          example: 2
+        description: user id to be searched
+        required: true
+      responses:
+        '200':
+          description: search result matching criteria
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Tester'
+                  email:
+                    type: string
+                    format: email
+                    example: 'tester@email.com'
+        '401':
+          description: Unauthorized. Need to login first
+        '404':
+          description: nothing found
+      security:
+        - cookieAuth: []
+  /users/is-cookie-alive:
+    get:
+      tags:
+        - User
+      summary: checks if user is logged in
+      operationId: isLoggedIn 
+      responses:
+        '200':
+          description: user is logged in
+        '401':
+          description: user is not logged in
+      security:
+        - cookieAuth: []      
+  /users/logout:
+    get:
+      tags:
+        - User
+      summary: logouts from existing session
+      operationId: logOutUser
+      responses:
+        '200':
+          description: logout operation is successful
+  /users/login:
+    post:
+      tags:
+        - User
+      summary: endpoint to login application
+      operationId: loginUserOperation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: 'tester@email.com'
+                password:
+                  type: string
+                  format: password
+                  example: 'testtest'
+      responses:
+        '200':
+          description: User object of given credentials. 
+            Also the session ID is returned in response body with name cookie. 
+            You need to include this cookie id to authorization section for authorization-required apis.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'tester'
+                  email:
+                    type: string
+                    format: email
+                    example: 'tester@email.com'
+                  cookie:
+                    type: string
+                    example: '1234556asdv'
+        '401':
+          description: Unauthorized access. Password or email is wrong 
+  /users/register:
+    post:
+      tags:
+        - User
+      summary: endpoint to register application
+      operationId: registerUserOperation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: 'tester'
+                email:
+                  type: string
+                  format: email
+                  example: 'tester@email.com'
+                password:
+                  type: string
+                  format: password
+                  example: 'testtest'
+      responses:
+        '200':
+          description: user object recorded into server
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                    example: 1
+                  name:
+                    type: string
+                    example: 'Tester'
+                  email:
+                    type: string
+                    format: email
+                    example: 'tester@email.com'
+        '400':
+          description: user already exists  
+        '500':
+          description: failed to add user   
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: connect.sid
+  schemas:
+    User:
+      type: object
+      required:
+        - name
+        - email
+        - password
+      properties:
+        name:
+          type: string
+          example: 'Tester'
+        email:
+          type: string
+          format: email
+          example: 'tester@email.com'
+        password:
+          type: string
+          format: password
+          example: 'testtest'
+    Book:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: 'Harry potter'
+        picture:
+          type: string
+          format: url
+          example: '/assets/img/book1.jpg'
+        abstract:
+          type: string
+          example: 'abstract of book'
+        price:
+          type: number
+          format: float
+          example: 24.99
+        genre:
+          $ref: '#/components/schemas/Genre'
+        theme:
+          $ref: '#/components/schemas/Theme'
+        authors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Author'
+        similarities:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+        reviews:
+          type: array
+          items:
+            $ref: '#/components/schemas/Review'
+    Author:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: 'Kendra Elliot'
+        picture:
+          type: string
+          format: url
+          example: '/assets/img/author.jpg'
+        shortBio:
+          type: string
+          example: 'Short bio'
+        books:
+          type: array
+          items:
+            $ref: '#/components/schemas/Book'
+    Event:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          example: 'JK rowling meeting '
+        address:
+          type: string
+        startdate:
+          type: string
+          format: date
+        enddate:
+          type: string
+          format: date
+        book: 
+          $ref: '#/components/schemas/Book'
+    Order:
+      type: object
+      required:
+        - quantity
+        - book_id
+      properties:
+        quantity: 
+          type: integer
+          minimum: 1
+          example: 1
+        book: 
+          $ref: '#/components/schemas/Book'
+        user: 
+          $ref: '#/components/schemas/User'
+    Review:
+      type: object
+      required:
+        - content
+        - rating
+        - book
+      properties:
+        content:
+          type: string
+          example: 'I loved this book'
+        rating:
+          type: integer
+          example: 4
+        book:
+          $ref : '#/components/schemas/Book'
+        user:
+          $ref : '#/components/schemas/User'
+    Genre:
+      type: object
+      required:
+        - name
+        - displayName
+      properties:
+        name:
+          type: string
+          example: 'sci-fiction'
+        displayName:
+          type: string
+          example: 'Sci-fiction'
+    Theme:
+      type: object
+      required:
+        - name
+        - displayName
+      properties:
+        name:
+          type: string
+          example: 'individual-vs-society'
+        displayName:
+          type: string
+          example: 'Individual Vs. Society'
