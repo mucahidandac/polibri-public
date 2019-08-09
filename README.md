@@ -1,6 +1,8 @@
 # Polibri
 
-E-commerce web application using [Express 4](http://expressjs.com/).
+
+
+E-commerce web application using [Express 4](http://expressjs.com/). Example website is [here](https://polibri.herokuapp.com/)
 
 ## Dependencies
 - Npm version 6.4.1
