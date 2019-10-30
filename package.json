@@ -24,7 +24,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-session": "^1.16.2",
-    "knex": "^0.17.6",
+    "knex": "^0.19.5",
     "markdown-js": "0.0.4",
     "morgan": "^1.9.1",
     "nodemon": "^1.19.1",
